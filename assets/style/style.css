@@ -1,0 +1,28 @@
+.fight_area{
+    display: flex;
+    gap: 20px;
+}
+
+.hero, .monster{
+    flex: 1;
+}
+.lifebar{
+    width: 70%;
+    height: 10px;
+    border: 1px solid #333;
+    border-radius: 15px;
+}
+
+
+.lifebar .bar{
+    width: 20%;
+    background-color: red;
+    height: inherit;
+    border-radius: 15px;
+}
+
+.log{
+    border: 1px dotted #999;
+    height: 250px;
+    overflow-y: scroll;
+}
