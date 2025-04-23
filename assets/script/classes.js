@@ -39,3 +39,43 @@ class Sorcerer extends Character{
         this.maxLife = this._life;
     }
 }
+
+class littleMonster extends Character{
+    constructor(name){
+        super(name);
+        this._life = 60;
+        this.attack= 25;
+        this.defense = 2;
+        this.maxLife = this._life;
+    }
+}
+
+class bigMonster extends Character{
+    constructor(name){
+        super(name);
+        this._life=120;
+        this.attack= 110;
+        this.defense = 4;
+        this.maxLife=this._life;
+    }
+}
+
+class stage{
+    constructor (fighterName1, fighterName2, fighterEl1, fighterEl2){
+        this.fighterName1 = fighterName1;
+        this.fighterName2 = fighterName2;
+        this.fighterEl1 = fighterEl1;
+        this.fighterEl2 = fighterEl2;
+    }
+
+    start(){
+        this.update();
+    }
+
+    update(){
+        this.fighterEl1.querySelector('.name').innerHTML = this.fighterName1.name;
+
+        //fighter 2
+        this.fighterEl2.querySelector('.name').innerHTML = this.fighterName2.name;
+    }
+}
