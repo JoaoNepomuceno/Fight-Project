@@ -3,7 +3,7 @@
     gap: 20px;
 }
 
-.hero, .monster{
+#hero, #monster{
     flex: 1;
 }
 .lifebar{

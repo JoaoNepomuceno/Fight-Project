@@ -73,9 +73,14 @@ class stage{
     }
 
     update(){
-        this.fighterEl1.querySelector('.name').innerHTML = this.fighterName1.name;
+        //fighter 1
+        this.fighterEl1.querySelector('.name').innerHTML = this.fighterName1.name+' HP: '+this.fighterName1._life;
+        const life1 = (this.fighterName1._life/this.fighterName1.maxLife)*100;
+        this.fighterEl1.querySelector(".bar").style.width = `${life1}%`
 
         //fighter 2
-        this.fighterEl2.querySelector('.name').innerHTML = this.fighterName2.name;
+        this.fighterEl2.querySelector('.name').innerHTML = this.fighterName2.name+ ' HP: '+this.fighterName2._life
+        const life2 = (this.fighterName2._life/this.fighterName2.maxLife)*100;
+        this.fighterEl2.querySelector(".bar").style.width = `${life2}%`
     }
 }
