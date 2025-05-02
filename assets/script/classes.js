@@ -44,7 +44,7 @@ class littleMonster extends Character{
     constructor(name){
         super(name);
         this._life = 60;
-        this.attack= 25;
+        this.attack= 15;
         this.defense = 2;
         this.maxLife = this._life;
     }
@@ -60,13 +60,14 @@ class bigMonster extends Character{
     }
 }
 
-class stage{
-    constructor (fighterName1, fighterName2, fighterEl1, fighterEl2){
+class Stage{
+    constructor (fighterName1, fighterName2, fighterEl1, fighterEl2, logObject){
         this.fighterName1 = fighterName1;
         this.fighterName2 = fighterName2;
         this.fighterEl1 = fighterEl1;
         this.fighterEl2 = fighterEl2;
-    }
+        this.logObject = logObject;
+        }
 
     start(){
         this.update();
@@ -89,7 +90,7 @@ class stage{
 
     doAttack(attacking, attacked){
        if (attacking._life <=0 || attacked.life<=0){
-        console.log('Batendo em cachorro morto');
+        this.logObject.addMessage('Batendo em cachorro morto');
         return ;
        }
 
@@ -101,12 +102,34 @@ class stage{
 
        if(atualAttack > atualDefense ){
         attacked.life -= atualAttack;
-        console.log(`${attacking.name} causou ${atualAttack} em ${attacked.name}`)
+        this.logObject.addMessage(`${attacking.name} causou ${atualAttack} em ${attacked.name}`)
        }else{
-        console.log(`${attacked.name} conseguiu defender`)
+        this.logObject.addMessage(`${attacked.name} conseguiu defender`)
        }
 
        this.update();
     }
 
+}
+
+
+class Log{
+    list = [];
+
+    constructor (elList){
+        this.elList = elList;
+    }
+
+    addMessage (message){
+        this.list.push(message);
+        this.render();
+    }
+
+    render(){
+        this.elList.innerHTML = '';
+
+        for(let i in this.list){
+            this.elList.innerHTML += `<li>${this.list[i]}</li>`
+        }
+    }
 }
