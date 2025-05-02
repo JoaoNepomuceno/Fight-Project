@@ -70,17 +70,43 @@ class stage{
 
     start(){
         this.update();
+        this.fighterEl1.querySelector('button').addEventListener('click', () => this.doAttack(this.fighterName1, this.fighterName2));
+        this.fighterEl2.querySelector('button').addEventListener('click', () => this.doAttack(this.fighterName2, this.fighterName1));
+
     }
 
     update(){
         //fighter 1
-        this.fighterEl1.querySelector('.name').innerHTML = this.fighterName1.name+' HP: '+this.fighterName1._life;
+        this.fighterEl1.querySelector('.name').innerHTML = this.fighterName1.name+' HP: '+this.fighterName1.life.toFixed(1);
         const life1 = (this.fighterName1._life/this.fighterName1.maxLife)*100;
         this.fighterEl1.querySelector(".bar").style.width = `${life1}%`
 
         //fighter 2
-        this.fighterEl2.querySelector('.name').innerHTML = this.fighterName2.name+ ' HP: '+this.fighterName2._life
+        this.fighterEl2.querySelector('.name').innerHTML = this.fighterName2.name+ ' HP: '+this.fighterName2.life.toFixed(1);
         const life2 = (this.fighterName2._life/this.fighterName2.maxLife)*100;
         this.fighterEl2.querySelector(".bar").style.width = `${life2}%`
     }
+
+    doAttack(attacking, attacked){
+       if (attacking._life <=0 || attacked.life<=0){
+        console.log('Batendo em cachorro morto');
+        return ;
+       }
+
+       const attackFactor = (Math.random() * 2).toFixed(2);
+       const defenseFactor = (Math.random() * 2).toFixed(2);
+
+       const atualAttack = attackFactor * attacking.attack;
+       const atualDefense = defenseFactor * attacked.defense;
+
+       if(atualAttack > atualDefense ){
+        attacked.life -= atualAttack;
+        console.log(`${attacking.name} causou ${atualAttack} em ${attacked.name}`)
+       }else{
+        console.log(`${attacked.name} conseguiu defender`)
+       }
+
+       this.update();
+    }
+
 }
